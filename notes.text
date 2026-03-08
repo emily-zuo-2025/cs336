@@ -1,0 +1,11 @@
+Class notes
+Lecture 2
+Q: How long would it take to train a 70B parameter model on 15T tokens on 1024 H100s?
+
+
+Q: What's the largest model that you can train on 8H100s using AdamW (naively)?
+h100_bytes = 80e9 # 80GB
+byptes_per_parameter = 4 + 4 + (4 + 4) # parameters, gradients, optimizer state
+num_parameters = (h100_bytes * 8) / bytes_per_parameter 
+Caveat: activations are not accounted for (depends on batch size and squence length)
+This is a rought back-of-the-envelop calculation.
